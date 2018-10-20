@@ -30,9 +30,14 @@ class FoodItem {
   var unusedFoodItems = [rice, refriedBeans, potato];
   //This array holds the food items that have been added to the table
   var tableItems = [];
+
+  function getUnusedFoodItems() {
+      return unusedFoodItems;
+  }
   
   
   
 
   
-  module.exports = {rice: rice, FoodItem: FoodItem};
+  module.exports = {rice: rice, potato: potato,FoodItem: FoodItem, unusedFoodItems: unusedFoodItems, tableItems: tableItems,
+                    getUnusedFoodItems: getUnusedFoodItems};

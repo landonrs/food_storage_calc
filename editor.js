@@ -1,3 +1,4 @@
+  
   function setUpPage(){
       insertNumbersIntoSelect();
       insertFoodItems();
@@ -39,6 +40,11 @@
   function add_listeners(){
     var add_button = document.getElementById("add-food-button");
     add_button.addEventListener("touchend", add_item);
+    var userOptionButtons = document.getElementsByClassName("user-options");
+    console.dir(userOptionButtons);
+    for (var i = 0; i < userOptionButtons.length; i++) {
+        userOptionButtons[i].addEventListener("change", updateTable);
+    }
     
   }
 
@@ -65,12 +71,13 @@
         var foodChoice = unusedFoodItems[optionIndex];
         // add new row with the item
         var row = document.createElement('TR');
+        row.id = foodChoice.name + "-row";
         row.innerHTML = `
         <td>${foodChoice.name}</td>
         <td><select id="${foodChoice.name}-per" class="percentage" onchange="updateTable()">${percentages}</select></td>
         <td id="estimated-amount-${foodChoice.name}"></td>
         <td id="estimated-cost-${foodChoice.name}"></td>
-        <td><img src="remove-item.png" id="remove-food-button-${foodChoice.name}"></td>`;
+        <td><img src="remove-item.png" id="remove-food-button-${foodChoice.name}" ontouchstart="remove_item('${row.id}','${foodChoice.name}')"></td>`;
         table.appendChild(row);
 
         // add item to array of items on table remove from unused items
@@ -81,8 +88,27 @@
 
   }
 
-  function remove_item(){
-      
+  function remove_item(rowId, itemName){
+    //remove item from table
+    var row = document.getElementById(rowId);
+    row.parentElement.removeChild(row);
+    var removedItem = null;
+
+    // remove item from tableItems array and add to unusedItems array
+    for( var i = 0; i < tableItems.length; i++){
+        if (tableItems[i].name == itemName){
+            removedItem = tableItems[i];
+            tableItems.splice(i, 1);
+        }
+    };
+
+
+    unusedFoodItems.push(removedItem);
+    insertFoodItems();
+    updateTable();
+
+
+    
   }
 
   function updateTable(){
@@ -116,3 +142,5 @@
     document.getElementById("total-cost").innerHTML = "Total Estimated Cost: $" + totalCost.toFixed(2);
     console.log("Table updated!");
   }
+
+  module.exports = {remove_item: remove_item, add_item: add_item, insertFoodItems: insertFoodItems};

@@ -1,33 +1,55 @@
-body {
-  background-color: #dddddd;
-}
-
-.selection-text{
-  max-width: 40%;
-  padding-right: 10%;
-}
-
-div{
-  margin-top: 100px;
-}
-
-img {
-  max-width: 100%;
-  max-height: 50%;
-}
-
-#food-items{
-  width: 100%;
-}
-
-table, th, td {
-  border: 1px solid black;
+  body {
+    background-color: #dddddd;
   }
+
+  .selection-text{
+    max-width: 40%;
+    padding-right: 20%;
+    margin-right: 20%;
+  }
+
+  div{
+    margin-top: 100px;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 50%;
+  }
+
+  #add-food-button {
+    display: inline-block;
+    margin-right: 10%;
+    margin-left: 10%;
+    height: 50px;
+    width: 50px;
+    float: left;
+  }
+
+  #head-banner{
+    margin-top: 0px;
+    background-color: steelblue;
+    height: 5em;
+    width: 100%;
+    text-align: center;
+  }
+
+  #food-items{
+    width: 50%;
+    height: 50px;
+    display: inline-block;
+    margin-bottom: 2em;
+  }
+
+  table, th, td {
+    border: 1px solid black;
+    }
 
   .user-options {
       width: 40%;
       margin-right: 10%;
-      height: 100px;
+      margin-left: 10%;
+      height: 50px;
       float: right;
   }
 

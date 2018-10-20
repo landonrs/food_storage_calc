@@ -12,7 +12,7 @@ describe("app", function() {
     it("should return a string type", function(){
         let result = app.sayHello();
         assert.typeOf(result, 'string');
-    })
+    });
 });
 
 
